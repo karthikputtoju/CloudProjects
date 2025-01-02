@@ -59,18 +59,29 @@ resource "aws_eks_cluster" "eks_cluster" {
 }
 
 # Node Group (Private Node)
-resource "aws_launch_configuration" "eks_node_group" {
-  name = "eks-node-group"
-  image_id = "ami-01816d07b1128cd2d" # Specify a valid AMI ID
-  instance_type = var.eks_instance_type
-  security_groups = [aws_security_group.eks_security_group.id]
-  associate_public_ip_address = false
+resource "aws_launch_template" "eks_node_group" {
+  name_prefix   = "eks-node-group"
+  image_id      = "ami-01816d07b1128cd2d"
+  instance_type = "t2.medium"
+  key_name      = var.key_name
+
+  network_interfaces {
+    associate_public_ip_address = false
+    security_groups             = [aws_security_group.eks_security_group.id]
+  }
+
+  monitoring {
+    enabled = true
+  }
 }
 
 resource "aws_autoscaling_group" "eks_node_group" {
-  desired_capacity = 1
-  max_size = 2
-  min_size = 1
-  vpc_zone_identifier = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
-  launch_configuration = aws_launch_configuration.eks_node_group.id
+  desired_capacity     = 1
+  max_size             = 2
+  min_size             = 1
+  vpc_zone_identifier  = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
+  launch_template {
+    id      = aws_launch_template.eks_node_group.id
+    version = "$Latest"
+  }
 }
