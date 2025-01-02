@@ -76,8 +76,8 @@ You will set up the following infrastructure:
 2. The output should display the Kubernetes nodes from VPC 1.
    ```bash
    Outcome
-   1. After following the steps, your EC2 instance in VPC 2 will be able to access the private Kubernetes cluster in VPC 1 using AWS PrivateLink. When you run kubectl get nodes on the EC2 instance, you will see the Kubernetes nodes from the EKS  
-      cluster in VPC 1.
+   After following the steps, your EC2 instance in VPC 2 will be able to access the private Kubernetes cluster in VPC 1 using AWS PrivateLink. When you run kubectl get nodes on the EC2 instance, you will see the Kubernetes nodes from the EKS  
+   cluster in VPC 1.
    ```
    ```bash
    This `README.md` file provides clear instructions for setting up the VPCs, Kubernetes cluster, EC2 instance, and AWS PrivateLink, with troubleshooting tips and expected outcomes.
