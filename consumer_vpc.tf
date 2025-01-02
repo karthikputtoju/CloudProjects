@@ -29,7 +29,7 @@ resource "aws_security_group" "consumer_sg" {
 
 # EC2 Instance in Consumer VPC
 resource "aws_instance" "consumer_ec2" {
-  ami = "ami-07d9cf938edb0739b"  # Specify a valid AMI ID
+  ami = "ami-01816d07b1128cd2d"  # Specify a valid AMI ID
   instance_type = var.ec2_instance_type
   subnet_id = aws_subnet.consumer_private_subnet.id
   vpc_security_group_ids = [aws_security_group.consumer_sg.id]
