@@ -1,4 +1,4 @@
-# Kubernetes Cluster Access via AWS PrivateLink
+# AWS PrivateLink with EKS and EC2 Access
 
 This repository provides a step-by-step guide to set up two VPCs in AWS and configure them to securely access a private Kubernetes cluster (Amazon EKS) in one VPC from an EC2 instance in another VPC using AWS PrivateLink.
 
